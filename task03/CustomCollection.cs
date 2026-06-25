@@ -15,4 +15,11 @@ public class CustomCollection<T> : IEnumerable<T>
 
     public IEnumerator<T> GetEnumerator() => _items.GetEnumerator();
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+    public IEnumerable<T> GetReverseEnumerator(){
+        for (int i = _items.Count -1; i >= 0; i--)
+        {
+            yield return _items[i];
+        }
+    }
 }
