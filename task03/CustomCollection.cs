@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace task03;
 public class CustomCollection<T> : IEnumerable<T>
@@ -20,6 +21,13 @@ public class CustomCollection<T> : IEnumerable<T>
         for (int i = _items.Count -1; i >= 0; i--)
         {
             yield return _items[i];
+        }
+    }
+
+    public static IEnumerable<int> GenerateSequence(int start,int count){
+        for (int i = 0; i < count; i++)
+        {
+            yield return start + i;
         }
     }
 }

@@ -32,4 +32,11 @@ public class IteratorTests
         var result = collection.GetReverseEnumerator().ToList();
         Assert.Equal(new[] { 2, 1 }, result);
     }
+    
+    [Fact]
+    public void GenerateSequence_ReturnsCorrectSequence()
+    {
+        var sequence = CustomCollection<int>.GenerateSequence(5, 3).ToList();
+        Assert.Equal(new[] { 5, 6, 7 }, sequence);
+    }
 }
