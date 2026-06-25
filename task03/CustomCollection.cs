@@ -12,7 +12,7 @@ public class CustomCollection<T> : IEnumerable<T>
     public void Add(T item) => _items.Add(item);
 
     public bool Remove(T item) => _items.Remove(item); /*добавил потому что
-    в задании сказано репозиторий для добавления/удаления но в тестах этот метод не используется*/
+    в задании сказано методы для добавления/удаления но в тестах этот метод не используется*/
 
     public IEnumerator<T> GetEnumerator() => _items.GetEnumerator();
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -29,5 +29,9 @@ public class CustomCollection<T> : IEnumerable<T>
         {
             yield return start + i;
         }
+    }
+
+    public IEnumerable<T> FilterAndSort(Func<T, bool> predicate, Func<T, IComparable> keySelector){
+        return _items.Where(predicate).OrderBy(x => keySelector(x));
     }
 }
