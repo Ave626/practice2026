@@ -32,4 +32,11 @@ public class ClassAnalyzer
     {
         return _type.GetCustomAttribute<T>() != null;
     }
+    public IEnumerable<string> GetMethodParams(string methodname){
+        var method = _type.GetMethod(methodname, BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
+        if (method == null) return Enumerable.Empty<string>();
+        var returnType = new[] { method.ReturnType.Name };
+        var paramNames = method.GetParameters().Select(p => p.Name);
+        return returnType.Concat(paramNames);
+    }
 }

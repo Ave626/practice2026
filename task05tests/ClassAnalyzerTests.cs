@@ -52,5 +52,18 @@ public class ClassAnalyzerTests
     {
         var analyzer = new ClassAnalyzer(typeof(AttributedClass));
         bool hasSerializable = analyzer.HasAttribute<SerializableAttribute>();
+        Assert.True(hasSerializable);
+
     }
+
+    [Fact]
+    public void GetMethodParams_ReturnsReturnTypeAndParamNames()
+    {
+        var analyzer = new ClassAnalyzer(typeof(TestClass));
+        var paramsInfo = analyzer.GetMethodParams("MethodWithParams").ToList();
+        Assert.Contains("Int32", paramsInfo);
+        Assert.Contains("param1", paramsInfo);
+        Assert.Contains("param2", paramsInfo);
+    }
+
 }
