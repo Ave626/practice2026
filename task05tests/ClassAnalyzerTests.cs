@@ -20,4 +20,12 @@ public class AttributedClass { }
 
 public class ClassAnalyzerTests
 {
+    [Fact]
+    public void GetPublicMethods_ReturnsCorrectMethods()
+    {
+        var analyzer = new ClassAnalyzer(typeof(TestClass));
+        var methods = analyzer.GetPublicMethods();
+        
+        Assert.Contains("Method", methods);
+    }
 }

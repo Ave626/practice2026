@@ -13,4 +13,10 @@ public class ClassAnalyzer
     {
         _type = type;
     }
+
+    public IEnumerable<string> GetPublicMethods()
+    {
+        return _type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static)
+                    .Select(m => m.Name);
+    }
 }
