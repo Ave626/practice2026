@@ -37,4 +37,13 @@ public class ClassAnalyzerTests
         
         Assert.Contains("Property", props);
     }
+
+    [Fact]
+    public void GetAllFields_IncludesPrivateFields()
+    {
+        var analyzer = new ClassAnalyzer(typeof(TestClass));
+        var fields = analyzer.GetAllFields();
+        
+        Assert.Contains("_privateField", fields);
+    }
 }

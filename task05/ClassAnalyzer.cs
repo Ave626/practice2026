@@ -22,4 +22,9 @@ public class ClassAnalyzer
     public IEnumerable<string> GetProperties(){
         return _type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(p => p.Name);
     }
+
+    public IEnumerable<string> GetAllFields()
+    {
+        return _type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => f.Name);
+    }
 }
