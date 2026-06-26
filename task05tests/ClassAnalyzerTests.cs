@@ -46,4 +46,11 @@ public class ClassAnalyzerTests
         
         Assert.Contains("_privateField", fields);
     }
+
+    [Fact]
+    public void HasAttribute_ReturnsTrueIfAttributeExists()
+    {
+        var analyzer = new ClassAnalyzer(typeof(AttributedClass));
+        bool hasSerializable = analyzer.HasAttribute<SerializableAttribute>();
+    }
 }

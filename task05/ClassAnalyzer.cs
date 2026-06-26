@@ -27,4 +27,9 @@ public class ClassAnalyzer
     {
         return _type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => f.Name);
     }
+
+    public bool HasAttribute<T>() where T : Attribute
+    {
+        return _type.GetCustomAttribute<T>() != null;
+    }
 }
