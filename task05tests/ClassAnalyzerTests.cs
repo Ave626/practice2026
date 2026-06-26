@@ -28,4 +28,13 @@ public class ClassAnalyzerTests
         
         Assert.Contains("Method", methods);
     }
+
+    [Fact]
+    public void GetProperties_ReturnsProperties()
+    {
+        var analyzer = new ClassAnalyzer(typeof(TestClass));
+        var props = analyzer.GetProperties();
+        
+        Assert.Contains("Property", props);
+    }
 }
