@@ -4,6 +4,8 @@ using CommandLib;
 
 namespace FileSystemCommands;
 
+[Version(1, 0)]
+[DisplayName("Подсчет размера директории")]
 public class DirectorySizeCommand : ICommand
 {
     private string directoryPath;
