@@ -66,4 +66,9 @@ public class ClassAnalyzerTests
         Assert.Contains("param2", paramsInfo);
     }
 
+    [Fact]
+    public void Constructor_NullType_ThrowsArgumentNullException()
+    {
+        Assert.Throws<ArgumentNullException>(() => new ClassAnalyzer(null!));
+    }
 }
