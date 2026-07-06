@@ -50,5 +50,19 @@ public class IteratorTests
         
         var result = collection.FilterAndSort(x => x > 1, x => x).ToList();
         Assert.Equal(new[] { 2, 3 }, result);
-    }
+     }
+
+     [Fact]
+     public void FilterAndSort_NullPredicate_ThrowsArgumentNullException()
+     {
+         var collection = new CustomCollection<int>();
+         Assert.Throws<ArgumentNullException>(() => collection.FilterAndSort(null!, x => x));
+     }
+
+     [Fact]
+     public void FilterAndSort_NullKeySelector_ThrowsArgumentNullException()
+     {
+         var collection = new CustomCollection<int>();
+         Assert.Throws<ArgumentNullException>(() => collection.FilterAndSort(x => true, null!));
+     }
 }
