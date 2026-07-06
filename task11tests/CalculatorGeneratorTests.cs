@@ -4,7 +4,7 @@ using task11;
 
 namespace task11tests;
 
-public class UnitTest1
+public class CalculatorGeneratorTests
 {
     private const string CalculatorCode = @"
 public class Calculator
