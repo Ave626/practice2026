@@ -5,7 +5,7 @@ using task10;
 
 namespace task10tests;
 
-public class UnitTest1
+public class PluginLoaderTests
 {
     [Fact]
     public void TestTopologicalSort_CorrectOrder()
