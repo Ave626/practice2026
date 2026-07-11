@@ -24,7 +24,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\task10\task10.csproj" />
-    <ProjectReference Include="..\task08\CommandLib\CommandLib.csproj" />
   </ItemGroup>
 
 </Project>

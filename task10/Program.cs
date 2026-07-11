@@ -63,11 +63,18 @@ public class Program
             Console.WriteLine("\n=== Запуск плагинов ===");
             foreach (string name in executionOrder)
             {
-                if (plugins.TryGetValue(name, out Type type))
+                if (plugins.TryGetValue(name, out Type? type) && type != null)
                 {
                     Console.WriteLine($"Выполнение плагина: {name}");
-                    ICommand command = (ICommand)Activator.CreateInstance(type);
-                    command.Execute();
+                    ICommand? command = Activator.CreateInstance(type) as ICommand;
+                    if (command != null)
+                    {
+                        command.Execute();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Ошибка: Не удалось создать экземпляр плагина '{name}'.");
+                    }
                 }
                 else
                 {
