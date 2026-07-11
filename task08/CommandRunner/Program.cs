@@ -53,14 +53,14 @@ class Program
                 {
                     Console.WriteLine($"\nНайден тип команды: {type.Name}");
 
-                    ICommand command = null;
+                    ICommand? command = null;
                     if (type.Name == "DirectorySizeCommand")
                     {
-                        command = (ICommand)Activator.CreateInstance(type, new object[] { testDir });
+                        command = Activator.CreateInstance(type, new object[] { testDir }) as ICommand;
                     }
                     else if (type.Name == "FindFilesCommand")
                     {
-                        command = (ICommand)Activator.CreateInstance(type, new object[] { testDir, "*.txt" });
+                        command = Activator.CreateInstance(type, new object[] { testDir, "*.txt" }) as ICommand;
                     }
 
                     if (command != null)
