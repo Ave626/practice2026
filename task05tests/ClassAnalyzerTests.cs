@@ -5,6 +5,7 @@ using task05;
 
 namespace task05tests;
 
+#pragma warning disable CS0169, CS8618
 public class TestClass
 {
     public int PublicField;
@@ -14,6 +15,7 @@ public class TestClass
     public void Method() { }
     public int MethodWithParams(string param1, int param2) { return 0; }
 }
+#pragma warning restore CS0169, CS8618
 
 [Serializable]
 public class AttributedClass { }

@@ -36,7 +36,7 @@ public class ClassAnalyzer
         var method = _type.GetMethod(methodname, BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
         if (method == null) return Enumerable.Empty<string>();
         var returnType = new[] { method.ReturnType.Name };
-        var paramNames = method.GetParameters().Select(p => p.Name);
+        var paramNames = method.GetParameters().Select(p => p.Name ?? string.Empty);
         return returnType.Concat(paramNames);
     }
 }
