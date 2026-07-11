@@ -48,14 +48,20 @@ public static class CalculatorGenerator
 
             ms.Seek(0, SeekOrigin.Begin);
             Assembly assembly = Assembly.Load(ms.ToArray());
-            Type type = assembly.GetType("Calculator");
+            Type? type = assembly.GetType("Calculator");
             
             if (type == null)
             {
                 throw new InvalidOperationException("Класс Calculator не найден в сгенерированной сборке.");
             }
 
-            return (ICalculator)Activator.CreateInstance(type);
+            object? instance = Activator.CreateInstance(type);
+            if (instance == null)
+            {
+                throw new InvalidOperationException("Не удалось создать экземпляр класса Calculator.");
+            }
+
+            return (ICalculator)instance;
         }
     }
 }
