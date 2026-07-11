@@ -59,4 +59,22 @@ public class DefiniteIntegral
         }
         while (Interlocked.CompareExchange(ref location, newValue, currentValue) != currentValue);
     }
+
+    public static double SolveSingleThread(double a, double b, Func<double, double> function, double step)
+    {
+        int stepsCount = (int)Math.Round((b - a) / step);
+        if (stepsCount < 1) stepsCount = 1;
+
+        double localStep = (b - a) / stepsCount;
+        double sum = 0.0;
+
+        for (int j = 0; j < stepsCount; j++)
+        {
+            double x1 = a + j * localStep;
+            double x2 = a + (j + 1) * localStep;
+            sum += (function(x1) + function(x2)) / 2.0 * localStep;
+        }
+
+        return sum;
+    }
 }
