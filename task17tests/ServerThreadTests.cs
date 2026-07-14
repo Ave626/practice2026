@@ -7,6 +7,8 @@ namespace task17tests;
 
 public class ServerThreadTests
 {
+    private const int ThreadJoinTimeoutMs = 2000;
+
     private class MockCommand : ICommand
     {
         public bool Executed { get; private set; }
@@ -37,7 +39,7 @@ public class ServerThreadTests
         serverThread.Queue.Add(cmd2);
 
         serverThread.Start();
-        serverThread.Thread.Join(2000);
+        serverThread.Thread.Join(ThreadJoinTimeoutMs);
 
         Assert.True(cmd1.Executed);
         Assert.False(cmd2.Executed);
@@ -57,7 +59,7 @@ public class ServerThreadTests
         serverThread.Queue.Add(cmd2);
 
         serverThread.Start();
-        serverThread.Thread.Join(2000);
+        serverThread.Thread.Join(ThreadJoinTimeoutMs);
 
         Assert.True(cmd1.Executed);
         Assert.True(cmd2.Executed);
@@ -99,7 +101,7 @@ public class ServerThreadTests
         serverThread.Queue.Add(hardStop);
 
         serverThread.Start();
-        serverThread.Thread.Join(2000);
+        serverThread.Thread.Join(ThreadJoinTimeoutMs);
 
         Assert.Same(exceptionToThrow, caughtException);
         Assert.Same(cmdWithException, caughtCommand);
