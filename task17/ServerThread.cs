@@ -71,7 +71,7 @@ public class ServerThread
             {
                 command.Execute();
 
-                if (command is ILongCommand longCommand && !longCommand.IsCompleted)
+                if (_scheduler != null && command is ILongCommand longCommand && !longCommand.IsCompleted)
                 {
                     _scheduler.Add(command);
                 }
@@ -118,7 +118,7 @@ public class ServerThread
                 {
                     command.Execute();
 
-                    if (command is ILongCommand longCommand && !longCommand.IsCompleted)
+                    if (_scheduler != null && command is ILongCommand longCommand && !longCommand.IsCompleted)
                     {
                         _scheduler.Add(command);
                     }

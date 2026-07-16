@@ -12,6 +12,10 @@ namespace task18tests;
 
 public class SchedulerTests
 {
+    private const int ThreadJoinTimeoutMs = 2000;
+    private const int ImageWidth = 800;
+    private const int ImageHeight = 600;
+
     private class TestLongCommand : ILongCommand
     {
         private readonly string _name;
@@ -84,7 +88,7 @@ public class SchedulerTests
 
         server.Start();
         
-        bool joined = server.Thread.Join(2000);
+        bool joined = server.Thread.Join(ThreadJoinTimeoutMs);
         Assert.True(joined);
 
         Assert.Equal(new[] { "A-1", "B-1", "A-2", "B-2", "A-3" }, executionLog);
@@ -108,7 +112,7 @@ public class SchedulerTests
 
         server.Start();
         
-        bool joined = server.Thread.Join(2000);
+        bool joined = server.Thread.Join(ThreadJoinTimeoutMs);
         Assert.True(joined);
 
         Assert.Contains("A-1", executionLog);
@@ -139,7 +143,7 @@ public class SchedulerTests
         server.Queue.Add(new SoftStopCommand(server));
 
         server.Start();
-        bool joined = server.Thread.Join(2000);
+        bool joined = server.Thread.Join(ThreadJoinTimeoutMs);
         Assert.True(joined);
 
         var plot = new Plot();
@@ -193,7 +197,7 @@ public class SchedulerTests
 
         string filePathPNG = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "progress_chart.png");
         string filePathTXT = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "report.txt");
-        plot.SavePng(filePathPNG, 800, 600);
+        plot.SavePng(filePathPNG, ImageWidth, ImageHeight);
 
         using (var writer = new StreamWriter(filePathTXT))
         {
